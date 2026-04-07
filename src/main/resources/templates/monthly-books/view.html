@@ -1,0 +1,57 @@
+<!-- 
+Krasso, R. (2021). CIS 530 Server-Side Development. Bellevue University, all right reserved.
+Modified by D. Locascio (2026)
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Bookclub | Monthly Book Details</title>
+        <!-- Bootstrap. (2026). Bootstrap CDN https://getbootstrap.com/ -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+              rel="stylesheet"
+              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+              crossorigin="anonymous">
+    </head>
+    <body>
+        <!-- Display header fragment -->
+        <div th:insert="~{fragments/header :: header}"></div>
+        <!-- Display page title -->
+        <div class="container py-5" style="width: 50%;">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center">Book of the month details</h1>
+                </div>
+            </div>    
+        </div>
+        <!-- Main card container -->
+        <div class="container" style="width: 50%;">
+            <div class="card">
+                <div class="card-body">
+                    <!-- Displays book title -->
+                    <h4 class="card-title" th:text="${book.getTitle()}"></h4>
+                    <!-- Displays the number of pages -->
+                    <div class="card-subtitle">
+                        Pages: <span th:text="${book.getNumOfPages()}"></span>
+                    </div>
+                    <br />
+                    <!-- Displays book description and author -->
+                    <div class="card-text">
+                        <dl>
+                            <dt>Description:</dt>
+                            <dd th:text="${book.getDescription()}"></dd>
+                            <dt>Authors:</dt>
+                            <dd th:each="author : ${book.getAuthors()}">
+                                <p th:text="${author}"></p>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <!-- Anchor element to return back to index.html page. -->
+            <a href="/" th:href="@{/}">Return to books</a>
+        </div>
+    <div th:insert="~{fragments/scriptFooter :: scriptFooter}"></div>
+    </body>
+</html>
