@@ -1,0 +1,54 @@
+<!-- 
+Krasso, R. (2021). CIS 530 Server-Side Development. Bellevue University, all right reserved.
+Modified by D. Locascio (2026)
+-->
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+    <head>
+        <meta charset='UTF-8'>
+        <title>Bookclub | Wishlist</title>
+        <!-- Bootstrap. (2026). Bootstrap CDN https://getbootstrap.com/ -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+              rel="stylesheet"
+              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+              crossorigin="anonymous">
+    </head>
+    <body>
+        <!-- Display header fragment -->
+        <div th:insert="~{fragments/header :: header}"></div>
+        <!-- Display page title -->
+        <div class="container py-5" style="width: 50%;">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center">My Wishlist</h1>
+                </div>
+            </div>    
+            <p class='text-center'>
+                <!-- Link to create a new wishlist item. -->
+                <a href='/wishlist/new' th:href='@{/wishlist/new}' class='btn btn-outline-secondary text-center'>New Wishlist Item</a>
+            </p>
+            <!-- W3Schools. (2026). Basic Table. https://www.w3schools.com/bootstrap5/bootstrap_tables.php -->
+            <!-- Displays wishlist items in a simple bootstrap table. -->
+            <table class='table'>
+                <thead>
+                    <tr>
+                        <th>ISBN</th>
+                        <th>Title</th>
+                        <th>Functions</th>
+                    </tr>
+                </thead>
+                <!-- Iterate through the wishlist collection and display isbn and title. -->
+                <tbody th:each='item : ${wishlist}'>
+                    <tr>
+                        <td th:text='${item.getIsbn()}'></td>
+                        <td th:text='${item.getTitle()}'></td>
+                        <td>
+                            <a href='#' class='link'>Edit</a> | <a href='#' class='link'>Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:insert="~{fragments/scriptFooter :: scriptFooter}"></div>
+    </body>
+</html>
