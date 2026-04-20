@@ -1,14 +1,21 @@
-/*
-Locascio, D. (2026). CIS 530 Server-Side Development. Bellevue University, all right reserved. 
-*/ 
+/**
+ * Krasso, R. (2021). CIS 530 Server-Side Development. Bellevue University, all right reserved.
+ * Modified by D. Locascio (2026)
+ */
+
 package com.bookclub.model;
 
 //VMware Tanzu. Getting started: Validating form input. Getting Started | Validating Form Input. (2026). https://spring.io/guides/gs/validating-form-input 
-import jakarta.validation.constraints.NotNull;
+import org.springframework.data.annotation.Id;
+
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 public class WishlistItem {
-    // Krasso, R. (2021). CIS 530 Server-Side Development. Bellevue University, all right reserved.
+
+    @Id
+    private String id;
+
     @NotNull
     @NotEmpty(message = "ISBN is a required field.")
     private String isbn;
@@ -56,10 +63,17 @@ public class WishlistItem {
     }
 
     /**
-     * Accessor method to get title
+     * Accessor method to get title.
      */
     public String getTitle() {
         return title;
+    }
+
+    /**
+     * Accessor method to get Id.
+     */
+    public String getId() {
+        return id;
     }
 
     /**
@@ -67,7 +81,6 @@ public class WishlistItem {
      */
     @Override
     public String toString() {
-        // return String.format("WishlistItem{isbn=%s, title=%s}", isbn, title);
-        return String.format("WishlistItem{isbn=<isbnValue>, title=<titleValue>}");
+        return String.format("WishlistItem{isbn=%s, title=%s, id=%s}", isbn, title, id);
     }
 }
