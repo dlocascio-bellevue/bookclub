@@ -27,14 +27,19 @@ Krasso, R. (2021). CIS 530 Server-Side Development. Bellevue University, all rig
                                 <a class='nav-link' href='/wishlist' th:href='@{/wishlist}'>Wishlist</a>
                             </li>
                         </ul>
-                        // Display logged-in user's name and logout link if authenticated.
+                        <!-- Display logged-in user's name and logout link if authenticated -->
                         <div class='nav navbar-nav ml-auto w-100 justify-content-center'>
                             <div sec:authorize='isAuthenticated()'>
                                 Logged in as <strong sec:authentication='name'></strong>
                             </div>
                         </div>
-                        // Logout link for authenticated users.
+                        
                         <ul class='nav navbar-nav ml-auto w-100 justify-content-end'>
+                            <!-- Link to OpenAPI Specification (Swagger UI) -->
+                            <li class='nav-item'>
+                                <a href="/swagger-ui.html" class='nav-link' target='_blank'>OpenAPI Specification</a>
+                            </li>
+                            <!-- Logout link for authenticated users -->
                             <li class='nav-item float-end'>
                                 <a href='/logout' th:href='@{/logout}' class='nav-link float-end'>Logout</a>
                             </li>

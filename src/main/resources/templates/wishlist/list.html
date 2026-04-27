@@ -25,30 +25,50 @@ Modified by D. Locascio (2026)
             </div>    
             <p class='text-center'>
                 <!-- Link to create a new wishlist item. -->
-                <a href='/wishlist/new' th:href='@{/wishlist/new}' class='btn btn-outline-secondary text-center'>New Wishlist Item</a>
+                <a href="/wishlist/new" th:href="@{/wishlist/new}" class='btn btn-outline-secondary text-center'>New Wishlist Item</a>
             </p>
-            <!-- W3Schools. (2026). Basic Table. https://www.w3schools.com/bootstrap5/bootstrap_tables.php -->
-            <!-- Displays wishlist items in a simple bootstrap table. -->
-            <table class='table'>
-                <thead>
-                    <tr>
-                        <th>ISBN</th>
-                        <th>Title</th>
-                        <th>Functions</th>
-                    </tr>
-                </thead>
-                <!-- Iterate through the wishlist collection and display isbn and title. -->
-                <tbody th:each='item : ${wishlist}'>
-                    <tr>
-                        <td th:text='${item.getIsbn()}'></td>
-                        <td th:text='${item.getTitle()}'></td>
-                        <td>
-                            <a href='#' class='link'>Edit</a> | <a href='#' class='link'>Delete</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div id='wishlist'></div>
         </div>
+
+        <!-- Bootstrap JS and dependencies -->
+        <script type="text/javascript">
+            class HttpClient {
+                async get(url, params = "") {
+                    url = new URL(url);
+                    url.search = new URLSearchParams(params).toString();
+
+                    console.log(url.toString());
+
+                    const res = await fetch(url.toString(), {
+                        method: 'GET',
+                    });
+                    return res.json();
+                }
+            }
+
+            // Function to build an HTML table from a list of books.
+            function buildTable (books) {
+                let tableString = `<table class="table"><tr><th>ISBN</th><th>Title</th><th>Functions</th></tr>`;
+
+                for (let book of books) {
+                    tableString += `<tr><td>${book.isbn}</td><td>${book.title}</td><td><a href="#">Edit</a> | <a href="#">Delete</a></td></tr>`;
+                }
+
+                tableString += `</table>`
+
+                return tableString;
+            }
+
+            const http = new HttpClient();
+
+            // Fetch the wishlist items from the API and display them in the table.
+            http.get('http://localhost:8080/api/wishlist').then(res => {
+                console.log(res);
+                document.getElementById("wishlist").innerHTML = buildTable(res);
+            }).catch(e => {
+                console.log(e);
+            });
+        </script>
         <div th:insert="~{fragments/scriptFooter :: scriptFooter}"></div>
     </body>
 </html>
