@@ -40,9 +40,9 @@ Modified by D. Locascio (2026)
                         <dl>
                             <dt>Description:</dt>
                             <dd th:text="${book.getDescription()}"></dd>
-                            <dt>Authors:</dt>
-                            <dd th:each="author : ${book.getAuthors()}">
-                                <p th:text="${author}"></p>
+                            <dt>Web Link:</dt>
+                            <dd>
+                                <a href="#" th:href="${book.getInfoUrl()}" th:text="${book.getInfoUrl()}" target="_blank"></a>
                             </dd>
                         </dl>
                     </div>

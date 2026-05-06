@@ -38,11 +38,12 @@ Modified by D. Locascio (2026)
                                 <p class="card-text">
                                     <span th:text="${book.getTitle()}"></span>
                                     <br />
-                                    <small class="text-muted"><em th:text="${book.getDescription()}"></em></small>
+                                    <small class="text-muted"><em th:text="${book.getIsbn()}"></em></small>
                                 </p>   
                                 <!-- View button links to the book details page by passing ISBN variable to the controller. -->
                                 <div class="btn-group">
                                     <a href="#" th:href="@{/{id}(id=${book.getIsbn()})}" class="btn btn-sm btn-outline-secondary">View</a>
+                                    <a href="#" th:href="${book.getInfoUrl()}" class="btn btn-sm btn-outline-secondary" target="_blank">Web Link</a>
                                 </div>
                             </div>
                         </div>

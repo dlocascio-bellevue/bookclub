@@ -4,8 +4,6 @@ Locascio, D. (2026). CIS 530 Server-Side Development. Bellevue University, all r
 
 package com.bookclub.model;
 
-import java.util.List;
-
 /**
  * Represents a Book object with ISBN, Title, Description, Page Count, and Author.
  */
@@ -14,7 +12,7 @@ public class Book {
     private String title;
     private String description;
     private int numOfPages;
-    private List<String> authors;
+    private String infoUrl;
 
     /**
      * No argument constructor to initialize a new book object.
@@ -29,14 +27,27 @@ public class Book {
      * @param title String
      * @param description String
      * @param numOfPages int
-     * @param authors List<String>
+     * @param infoUrl String
      */
-    public Book(String isbn, String title, String description, int numOfPages, List<String> authors) {
+    public Book(String isbn, String title, String description, String infoUrl, int numOfPages) {
         this.isbn = isbn;
         this.title = title;
         this.description = description;
         this.numOfPages = numOfPages;
-        this.authors = authors;
+        this.infoUrl = infoUrl;
+    }
+
+    /**
+     * Constructor to initialize a book object with only the required fields for the home page.
+     * 
+     * @param isbn String
+     * @param title String
+     * @param infoUrl String
+     */
+    public Book(String isbn, String title, String infoUrl) {
+        this.isbn = isbn;
+        this.title = title;
+        this.infoUrl = infoUrl;
     }
 
     /**
@@ -96,17 +107,17 @@ public class Book {
     }
 
     /**
-     * Mutator method to set Authors.
+     * Mutator method to set Info URL.
      */
-    public void setAuthors(List<String> authors) {
-        this.authors = authors;
+    public void setInfoUrl(String infoUrl) {
+        this.infoUrl = infoUrl;
     }
     
     /**
-     * Accessor method to get Authors.
+     * Accessor method to get Info URL.
      */
-    public List<String> getAuthors() {
-        return authors;
+    public String getInfoUrl() {
+        return infoUrl;
     }
 
     /**
@@ -114,6 +125,6 @@ public class Book {
      */
     @Override
     public String toString() {
-        return String.format("Book{isbn=%s, title=%s, description=%s, numOfPages=%s, authors=%s}", isbn, title, description, numOfPages, authors);
+        return String.format("Book{isbn=%s, title=%s, description=%s, numOfPages=%s, infoUrl=%s}", isbn, title, description, numOfPages, infoUrl);
     }
 }

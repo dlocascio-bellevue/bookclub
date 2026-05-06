@@ -31,6 +31,12 @@
 	</properties>
 	<dependencies>
 
+		<!-- Json path library -->
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+		</dependency>
+
 		<!-- SpringDoc OpenAPI UI -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
